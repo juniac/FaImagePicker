@@ -21,5 +21,11 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func imagePickerButtonAction(sender: UIButton) {
+        let storyboard = UIStoryboard(name: "FaImagePicker", bundle: nil)
+        let faImagePicker = storyboard.instantiateViewControllerWithIdentifier("FaImagePicker") as! UINavigationController!
+        self.presentViewController(faImagePicker, animated: true, completion: {})
+        
+    }
 }
 
