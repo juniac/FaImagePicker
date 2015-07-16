@@ -122,6 +122,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y54-hB-igx">
+                                <rect key="frame" x="-1" y="64" width="600" height="466"/>
+                                <color key="backgroundColor" red="0.98431372549999996" green="0.30588235289999999" blue="0.23921568630000001" alpha="0.52000000000000002" colorSpace="calibratedRGB"/>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3aQ-wz-xLk" userLabel="Menu">
                                 <rect key="frame" x="0.0" y="530" width="600" height="70"/>
                                 <subviews>
@@ -176,19 +180,12 @@
                                     <constraint firstAttribute="height" constant="70" id="MZQ-2v-QKc"/>
                                 </constraints>
                             </view>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q7z-hv-hIt">
-                                <rect key="frame" x="0.0" y="64" width="600" height="466"/>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="q7z-hv-hIt" secondAttribute="trailing" id="2p5-Kp-Tn3"/>
                             <constraint firstItem="3aQ-wz-xLk" firstAttribute="leading" secondItem="2aN-HS-ed6" secondAttribute="leading" id="7St-ch-QpC"/>
                             <constraint firstAttribute="trailing" secondItem="3aQ-wz-xLk" secondAttribute="trailing" id="QTE-dW-aI4"/>
-                            <constraint firstItem="3aQ-wz-xLk" firstAttribute="top" secondItem="q7z-hv-hIt" secondAttribute="bottom" id="Zy6-2y-rF8"/>
-                            <constraint firstItem="q7z-hv-hIt" firstAttribute="top" secondItem="JD3-SI-QNg" secondAttribute="bottom" id="bhj-jq-EMb"/>
                             <constraint firstItem="peW-Kh-KEj" firstAttribute="top" secondItem="3aQ-wz-xLk" secondAttribute="bottom" id="bo9-tD-bV9"/>
-                            <constraint firstItem="q7z-hv-hIt" firstAttribute="leading" secondItem="2aN-HS-ed6" secondAttribute="leading" id="v5d-TK-zI5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Crop" id="skv-gP-IsN">
@@ -199,12 +196,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="q7z-hv-hIt" id="wel-iR-QSe"/>
                         <outlet property="menuView" destination="3aQ-wz-xLk" id="f3Z-N8-e2p"/>
                         <outlet property="ratio1x1Button" destination="sIY-qP-aAC" id="BA0-za-Sjb"/>
                         <outlet property="ratio3x4Button" destination="X6F-oA-csl" id="saC-RE-lp0"/>
                         <outlet property="ratio4x3Button" destination="bPN-QG-mIS" id="UWx-iF-2xu"/>
                         <outlet property="ratioOriginalButton" destination="PqY-Xn-x6I" id="ydR-ya-jng"/>
+                        <outlet property="scrollView" destination="Y54-hB-igx" id="9qQ-z9-hDe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5J-vA-Hin" userLabel="First Responder" sceneMemberID="firstResponder"/>

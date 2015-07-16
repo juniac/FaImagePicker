@@ -15,12 +15,13 @@ struct ASSET_ASPECT {
     static let RATIO_3x4 = 3
     
 }
-class CropAssetViewController: UIViewController {
+class CropAssetViewController: UIViewController, UIScrollViewDelegate {
 
     var image:UIImage!
-//    var panGesture:UIPanGestureRecognizer!
+    var imageView = UIImageView()
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+
     @IBOutlet weak var menuView: UIView!
     
     @IBOutlet weak var ratio1x1Button: UIButton!
@@ -30,33 +31,34 @@ class CropAssetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.scrollView.addSubview(imageView)
+        self.scrollView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
 
-        let panGesture = UIPanGestureRecognizer(target: self, action: "panAction:")
-        self.imageView.addGestureRecognizer(panGesture)
+    }
+    
+    override func viewDidLayoutSubviews() {
         if image != nil {
             self.imageView.image = image
             let frameSize = self.frameSizeWithAspectRatio(ASSET_ASPECT.RATIO_ORIGINAL)
             let imageFrameSize = self.imageViewSizeWithFrame(frameSize)
-            self.changeCroppingAreaWithAnimation(true, frame: frameSize, imageFrameSize: imageFrameSize)
+            self.changeCroppingAreaWithAnimation(false, frame: frameSize, imageFrameSize: imageFrameSize)
         }
-        
     }
-    
 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func panAction(recognizer:UIPanGestureRecognizer) {
-        println(1)
-    }
+
     
     func frameSizeWithAspectRatio(ratio:Int) -> CGSize {
-        let availableSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height - self.menuView.bounds.height)
+        let availableSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height - self.menuView.bounds.height - self.topLayoutGuide.length)
         var frameSize:CGSize = availableSize
-        println(availableSize)
+//        println(availableSize)
         let frameRatio = availableSize.width / availableSize.height
     
         switch ratio {
@@ -107,24 +109,32 @@ class CropAssetViewController: UIViewController {
         var imageFrameSize:CGSize = CGSizeZero
         
         if imageRatio > 1 {
-            print(size)
             imageFrameSize = CGSizeMake(size.height * imageRatio, size.height)
         } else {
-            print(size)
             imageFrameSize = CGSizeMake(size.width, size.width / imageRatio)
         }
         return imageFrameSize
     }
 
     func changeCroppingAreaWithAnimation(animation:Bool, frame:CGSize, imageFrameSize:CGSize) {
-        let availableSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height - self.menuView.bounds.height)
-        let imageViewFrame = CGRectMake((availableSize.width - imageFrameSize.width) / 2, (availableSize.height - imageFrameSize.height) / 2, imageFrameSize.width, imageFrameSize.height)
         
+        
+        println("changeCroppingArea")
+        let availableSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height - self.menuView.bounds.height - self.topLayoutGuide.length)
+        let scrollViewFrame = CGRectMake((availableSize.width - frame.width) / 2, (availableSize.height - frame.height) / 2 + self.topLayoutGuide.length, frame.width, frame.height)
+        scrollView.contentSize = imageFrameSize
+        scrollView.contentInset = UIEdgeInsetsZero
+        let imageViewFrame = CGRectMake(0, 0, imageFrameSize.width, imageFrameSize.height)
+        scrollView.setContentOffset(CGPointZero, animated: true)
         if animation == true {
             UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.8, options: .CurveLinear, animations: {
                 self.imageView.frame = imageViewFrame
-                }, completion: { finished in })
+                self.scrollView.frame = scrollViewFrame
+                }, completion: { finished in
+
+            })
         } else {
+                self.scrollView.frame = scrollViewFrame
                 self.imageView.frame = imageViewFrame
         }
 
