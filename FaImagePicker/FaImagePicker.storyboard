@@ -7,7 +7,7 @@
         <!--Album-->
         <scene sceneID="eRm-bC-QrX">
             <objects>
-                <tableViewController storyboardIdentifier="AlbumTableViewController" id="7Qt-A6-dzf" customClass="AlbumTableViewController" customModule="FaImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AlbumTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7Qt-A6-dzf" customClass="AlbumTableViewController" customModule="FaImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zjs-pl-5Mr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -18,28 +18,28 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dOM-vM-15q" id="w0W-VK-Hnm">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiI-ae-Du0">
-                                            <rect key="frame" x="83" y="8" width="232" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQz-ps-ze7">
-                                            <rect key="frame" x="83" y="37" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="890-E8-paU">
                                             <rect key="frame" x="8" y="5" width="59" height="59"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQz-ps-ze7">
+                                            <rect key="frame" x="83" y="37" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiI-ae-Du0">
+                                            <rect key="frame" x="83" y="13" width="232" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="assetCountLabel" destination="eQz-ps-ze7" id="O4O-Uf-Va5"/>
                                     <outlet property="nameLabel" destination="UiI-ae-Du0" id="xNp-Uf-zsI"/>
                                     <outlet property="tumbnailImageView" destination="890-E8-paU" id="dzZ-qe-0my"/>
-                                    <segue destination="1W3-0C-eHu" kind="show" id="cke-lM-Wtx"/>
+                                    <segue destination="1W3-0C-eHu" kind="show" identifier="showAssetCollection" id="cke-lM-Wtx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -58,30 +58,45 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHF-4k-xd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="629" y="536"/>
+            <point key="canvasLocation" x="662" y="536"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Asset Collection View Controller-->
         <scene sceneID="W0M-Pt-Q3A">
             <objects>
-                <collectionViewController id="1W3-0C-eHu" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="AssetCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1W3-0C-eHu" customClass="AssetCollectionViewController" customModule="FaImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lpD-XF-KLd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZdO-ys-OIT">
-                            <size key="itemSize" width="50" height="50"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="iin-1t-XKY">
+                            <size key="itemSize" width="231" height="209"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="c2g-N2-qhY">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AssetCell" id="Fps-kb-HgD" customClass="AssetCollectionViewCell" customModule="FaImagePicker" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="231" height="209"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ffo-fi-QAP">
+                                            <rect key="frame" x="0.0" y="0.0" width="231" height="209"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="0.26274509800000001" green="0.70196078429999997" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ffo-fi-QAP" secondAttribute="bottom" id="6tT-7l-Vew"/>
+                                    <constraint firstItem="ffo-fi-QAP" firstAttribute="leading" secondItem="Fps-kb-HgD" secondAttribute="leading" id="8DC-AT-o0O"/>
+                                    <constraint firstAttribute="trailing" secondItem="ffo-fi-QAP" secondAttribute="trailing" id="Ode-fG-wxg"/>
+                                    <constraint firstItem="ffo-fi-QAP" firstAttribute="top" secondItem="Fps-kb-HgD" secondAttribute="top" id="UTe-cT-mNR"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="ffo-fi-QAP" id="WlD-Z2-LHe"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -92,7 +107,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYj-uX-loN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1352" y="536"/>
+            <point key="canvasLocation" x="1340" y="536"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ooC-6R-dHF">
