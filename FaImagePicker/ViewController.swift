@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, FaImagePickerControllerDelegate {
 
+    @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,11 +36,14 @@ class ViewController: UIViewController, FaImagePickerControllerDelegate {
         })
     }
     
-    func faImagePickerController(picker: FaImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        println(info)
+    func faImagePickerController(picker: FaImagePickerController, didFinishPickingImage image:UIImage?) {
+        print("image:")
+        println(image)
+        self.imageView.image = image
         self.dismissViewControllerAnimated(true, completion: {
-        
+            
         })
+
     }
 }
 

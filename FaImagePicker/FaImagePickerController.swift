@@ -8,15 +8,16 @@
 
 import UIKit
 protocol FaImagePickerControllerDelegate {
-    func faImagePickerController(picker: FaImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+//    func faImagePickerController(picker: FaImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+    func faImagePickerController(picker: FaImagePickerController, didFinishPickingImage image: UIImage?)
     func faImagePickerControllerDidCancel(picker: FaImagePickerController)
 }
 
 class FaImagePickerController: UINavigationController {
     var imagePickerDelegate:FaImagePickerControllerDelegate! = nil
     
-    var info = [NSObject : AnyObject]()
-    
+//    var info = [NSObject : AnyObject]()
+    var image:UIImage! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,7 +45,7 @@ class FaImagePickerController: UINavigationController {
     }
     
     func shouldBeDone() {
-        self.imagePickerDelegate.faImagePickerController(self, didFinishPickingMediaWithInfo: info)
+        self.imagePickerDelegate.faImagePickerController(self, didFinishPickingImage :image)
     }
     
 }

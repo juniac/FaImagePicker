@@ -61,6 +61,12 @@ class AssetCollectionViewController: UICollectionViewController, UICollectionVie
                 let asset = self.assets[indexPath!.row]
 //                cropAssetViewController.imageView.image = 
                 
+                let defaultRepresentation: ALAssetRepresentation = asset.defaultRepresentation()
+                let fullResolutionImage = defaultRepresentation.fullResolutionImage().takeUnretainedValue()
+                
+                let image = UIImage(CGImage: fullResolutionImage)
+                cropAssetViewController.image = image
+
             }
         }
     }
