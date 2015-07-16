@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FaImagePickerControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +23,23 @@ class ViewController: UIViewController {
 
     @IBAction func imagePickerButtonAction(sender: UIButton) {
         let storyboard = UIStoryboard(name: "FaImagePicker", bundle: nil)
-        let faImagePicker = storyboard.instantiateViewControllerWithIdentifier("FaImagePicker") as! UINavigationController!
+        let faImagePicker = storyboard.instantiateViewControllerWithIdentifier("FaImagePicker") as! FaImagePickerController!
+        faImagePicker.imagePickerDelegate = self
         self.presentViewController(faImagePicker, animated: true, completion: {})
         
+    }
+    
+    func faImagePickerControllerDidCancel(picker: FaImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: {
+        
+        })
+    }
+    
+    func faImagePickerController(picker: FaImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        println(info)
+        self.dismissViewControllerAnimated(true, completion: {
+        
+        })
     }
 }
 

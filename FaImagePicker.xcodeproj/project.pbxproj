@@ -19,6 +19,8 @@
 		BF9194391B5790DD0007D169 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9194381B5790DD0007D169 /* AlbumTableViewCell.swift */; };
 		BF91943B1B57A0BC0007D169 /* AssetCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF91943A1B57A0BC0007D169 /* AssetCollectionViewController.swift */; };
 		BF91943D1B57A0CC0007D169 /* AssetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF91943C1B57A0CC0007D169 /* AssetCollectionViewCell.swift */; };
+		BF91943F1B57BFDE0007D169 /* CropAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF91943E1B57BFDE0007D169 /* CropAssetViewController.swift */; };
+		BF9194411B57C5A50007D169 /* FaImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9194401B57C5A50007D169 /* FaImagePickerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		BF9194381B5790DD0007D169 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		BF91943A1B57A0BC0007D169 /* AssetCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewController.swift; sourceTree = "<group>"; };
 		BF91943C1B57A0CC0007D169 /* AssetCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF91943E1B57BFDE0007D169 /* CropAssetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropAssetViewController.swift; sourceTree = "<group>"; };
+		BF9194401B57C5A50007D169 /* FaImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaImagePickerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,10 +134,12 @@
 			isa = PBXGroup;
 			children = (
 				BF9194301B57843A0007D169 /* FaImagePicker.storyboard */,
+				BF9194401B57C5A50007D169 /* FaImagePickerController.swift */,
 				BF9194351B5786E80007D169 /* AlbumTableViewController.swift */,
 				BF9194381B5790DD0007D169 /* AlbumTableViewCell.swift */,
 				BF91943A1B57A0BC0007D169 /* AssetCollectionViewController.swift */,
 				BF91943C1B57A0CC0007D169 /* AssetCollectionViewCell.swift */,
+				BF91943E1B57BFDE0007D169 /* CropAssetViewController.swift */,
 			);
 			name = ImagePicker;
 			sourceTree = "<group>";
@@ -241,7 +247,9 @@
 			files = (
 				BF9194391B5790DD0007D169 /* AlbumTableViewCell.swift in Sources */,
 				BF9194131B5783E60007D169 /* ViewController.swift in Sources */,
+				BF9194411B57C5A50007D169 /* FaImagePickerController.swift in Sources */,
 				BF9194361B5786E80007D169 /* AlbumTableViewController.swift in Sources */,
+				BF91943F1B57BFDE0007D169 /* CropAssetViewController.swift in Sources */,
 				BF9194111B5783E60007D169 /* FaImagePicker.xcdatamodeld in Sources */,
 				BF91943D1B57A0CC0007D169 /* AssetCollectionViewCell.swift in Sources */,
 				BF91940E1B5783E60007D169 /* AppDelegate.swift in Sources */,

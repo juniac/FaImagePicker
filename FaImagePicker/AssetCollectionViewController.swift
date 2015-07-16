@@ -47,15 +47,24 @@ class AssetCollectionViewController: UICollectionViewController, UICollectionVie
 
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            
+            if segue.identifier == "showCropper" {
+                let cell = sender as! AssetCollectionViewCell
+                let indexPath = self.collectionView?.indexPathForCell(cell)
+                let cropAssetViewController:CropAssetViewController = segue.destinationViewController as! CropAssetViewController
+                let asset = self.assets[indexPath!.row]
+//                cropAssetViewController.imageView.image = 
+                
+            }
+        }
     }
-    */
+
 
     // MARK: UICollectionViewDataSource
 
@@ -101,13 +110,15 @@ class AssetCollectionViewController: UICollectionViewController, UICollectionVie
 
     // MARK: UICollectionViewDelegate
 
-    
-    /*
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+        
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    */
+    
 
     /*
     // Uncomment this method to specify if the specified item should be selected

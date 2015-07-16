@@ -28,7 +28,6 @@ class AlbumTableViewController: UITableViewController {
             (group: ALAssetsGroup?, stop: UnsafeMutablePointer<ObjCBool>) in
             
                 if let unWrappedGroup = group {
-                    println(unWrappedGroup)
                     unWrappedGroup.setAssetsFilter(ALAssetsFilter.allPhotos())
                     
                     if unWrappedGroup.numberOfAssets() > 0 {
@@ -58,7 +57,8 @@ class AlbumTableViewController: UITableViewController {
     }
 
     @IBAction func closeBarButtonAction(sender: UIBarButtonItem) {
-        
+        let faImagePickerController:FaImagePickerController = self.navigationController as! FaImagePickerController
+        faImagePickerController.shouldBeCancel()
     }
     // MARK: - Table view data source
 
@@ -138,7 +138,6 @@ class AlbumTableViewController: UITableViewController {
             if segue.identifier == "showAssetCollection" {
                 let cell = sender as! AlbumTableViewCell
                 let indexPath = self.tableView.indexPathForCell(cell)
-                println(indexPath?.row)
                 let assetCollectionViewController:AssetCollectionViewController = segue.destinationViewController as! AssetCollectionViewController
                 let group = self.assetsGroups[indexPath!.row]
                 assetCollectionViewController.loadAssetsGroup(group)
