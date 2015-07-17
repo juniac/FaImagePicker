@@ -193,9 +193,28 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
         let rect = CGRect(origin: resultImageOrigin, size: resultImageSize)
 
         
-        let imageRef = CGImageCreateWithImageInRect(self.image.CGImage, rect)
+        var rectTransform:CGAffineTransform!
+        switch (self.image.imageOrientation)  {
+        case UIImageOrientation.Left:
+            rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(CGFloat(M_PI_2)), 0, -self.image.size.height)
+            break;
+        case UIImageOrientation.Right:
+            rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(CGFloat(-M_PI_2)), -self.image.size.width, 0)
+            break;
+        case UIImageOrientation.Down:
+            rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(CGFloat(-M_PI)), -self.image.size.width, -self.image.size.height)
+            break;
+        default:
+            rectTransform = CGAffineTransformIdentity;
+        };
+        rectTransform = CGAffineTransformScale(rectTransform, self.image.scale, self.image.scale)
+        
+        let imageRef:CGImageRef = CGImageCreateWithImageInRect(self.image.CGImage, CGRectApplyAffineTransform(rect, rectTransform))
+        
         let cropImage = UIImage(CGImage: imageRef, scale: self.image.scale, orientation: self.image.imageOrientation)!
+        println("cropImageSize:\(cropImage)")
         return cropImage
+
     }
     
     @IBAction func ratioButtonAction(sender: UIButton) {
