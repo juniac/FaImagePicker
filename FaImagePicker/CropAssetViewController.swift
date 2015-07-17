@@ -20,7 +20,7 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
     var image:UIImage!
     var imageView = UIImageView()
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    var scrollView: UIScrollView! = UIScrollView()
 
     @IBOutlet weak var menuView: UIView!
     
@@ -29,10 +29,29 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var ratio3x4Button: UIButton!
     @IBOutlet weak var ratioOriginalButton: UIButton!
     
+    var topDimmedView: UIView = UIView()
+    var bottomDimmedView: UIView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(scrollView)
+        self.view.addSubview(topDimmedView)
+        self.view.addSubview(bottomDimmedView)
+        topDimmedView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 1)
+        bottomDimmedView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 1)
+        topDimmedView.alpha = 0.7
+        bottomDimmedView.alpha = 0.7
+        scrollView.scrollEnabled = true
+        scrollView.bounces = true
+        scrollView.maximumZoomScale = 3
+        scrollView.minimumZoomScale = 1
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.clipsToBounds = false
         self.scrollView.addSubview(imageView)
         self.scrollView.delegate = self
+        
+        self.view.bringSubviewToFront(menuView)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -47,6 +66,9 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
             self.changeCroppingAreaWithAnimation(false, frame: frameSize, imageFrameSize: imageFrameSize)
         }
     }
+    override func viewDidAppear(animated: Bool) {
+
+    }
 
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +76,10 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
     
     func frameSizeWithAspectRatio(ratio:Int) -> CGSize {
         let availableSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height - self.menuView.bounds.height - self.topLayoutGuide.length)
@@ -122,23 +148,54 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
         println("changeCroppingArea")
         let availableSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height - self.menuView.bounds.height - self.topLayoutGuide.length)
         let scrollViewFrame = CGRectMake((availableSize.width - frame.width) / 2, (availableSize.height - frame.height) / 2 + self.topLayoutGuide.length, frame.width, frame.height)
+        
+        let topDimmedViewFrame = CGRectMake(0, self.topLayoutGuide.length, self.view.bounds.width, scrollViewFrame.origin.y - self.topLayoutGuide.length)
+        let bottomDimmedViewFrame = CGRectMake(0, CGRectGetMaxY(scrollViewFrame), self.view.bounds.width, self.view.bounds.height - CGRectGetMaxY(scrollViewFrame) - menuView.bounds.height)
         scrollView.contentSize = imageFrameSize
         scrollView.contentInset = UIEdgeInsetsZero
         let imageViewFrame = CGRectMake(0, 0, imageFrameSize.width, imageFrameSize.height)
-        scrollView.setContentOffset(CGPointZero, animated: true)
+        let offset = CGPointMake((imageFrameSize.width - scrollViewFrame.width) / 2, (imageFrameSize.height - scrollViewFrame.height) / 2)
+        self.scrollView.setContentOffset(offset, animated: false)
         if animation == true {
             UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.8, options: .CurveLinear, animations: {
                 self.imageView.frame = imageViewFrame
                 self.scrollView.frame = scrollViewFrame
+                self.topDimmedView.frame = topDimmedViewFrame
+                self.bottomDimmedView.frame = bottomDimmedViewFrame
                 }, completion: { finished in
 
             })
         } else {
+
                 self.scrollView.frame = scrollViewFrame
                 self.imageView.frame = imageViewFrame
+                self.topDimmedView.frame = topDimmedViewFrame
+                self.bottomDimmedView.frame = bottomDimmedViewFrame
         }
 
+    }
+    
+    func cropImage() -> UIImage {
+        var scale:CGFloat
+        if imageView.frame.width == scrollView.frame.width {
+            scale = self.image.size.width / imageView.frame.width
+        } else {
+            scale = self.image.size.height / imageView.frame.height
+        }
+        let resultImageSize = CGSizeMake(self.scrollView.frame.size.width * scale, self.scrollView.frame.size.height * scale)
+        println(image.size)
+        println(resultImageSize)
+        
 
+        println(self.image.scale)
+        
+        let resultImageOrigin = CGPointMake(self.scrollView.contentOffset.x * scale, self.scrollView.contentOffset.y * scale)
+        let rect = CGRect(origin: resultImageOrigin, size: resultImageSize)
+
+        
+        let imageRef = CGImageCreateWithImageInRect(self.image.CGImage, rect)
+        let cropImage = UIImage(CGImage: imageRef, scale: self.image.scale, orientation: self.image.imageOrientation)!
+        return cropImage
     }
     
     @IBAction func ratioButtonAction(sender: UIButton) {
@@ -159,8 +216,10 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
 //        println("imageFrameSize:\(imageFrameSize)")
     }
     @IBAction func doneButtonAction(sender: UIBarButtonItem) {
+        
+        let cropImage = self.cropImage()
         let faImagePickerController:FaImagePickerController = self.navigationController as! FaImagePickerController
-        faImagePickerController.image = self.image
+        faImagePickerController.image = cropImage
         faImagePickerController.shouldBeDone()
         
     }
