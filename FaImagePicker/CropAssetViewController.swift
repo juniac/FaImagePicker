@@ -134,10 +134,12 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
         let frameRatio = size.width / size.height
         var imageFrameSize:CGSize = CGSizeZero
         
-        if imageRatio > 1 {
+        if imageRatio < 1 {
+            imageFrameSize = CGSizeMake(size.width, size.width / imageRatio)
+        } else if imageRatio > 1 {
             imageFrameSize = CGSizeMake(size.height * imageRatio, size.height)
         } else {
-            imageFrameSize = CGSizeMake(size.width, size.width / imageRatio)
+            imageFrameSize = CGSizeMake(max(size.width, size.height), max(size.width, size.height))
         }
         return imageFrameSize
     }
@@ -181,11 +183,6 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
             scale = self.image.size.height / imageView.frame.height
         }
         let resultImageSize = CGSizeMake(self.scrollView.frame.size.width * scale, self.scrollView.frame.size.height * scale)
-        println(image.size)
-        println(resultImageSize)
-        
-
-        println(self.image.scale)
         
         let resultImageOrigin = CGPointMake(self.scrollView.contentOffset.x * scale, self.scrollView.contentOffset.y * scale)
         let rect = CGRect(origin: resultImageOrigin, size: resultImageSize)
@@ -228,6 +225,8 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
             frameSize = self.frameSizeWithAspectRatio(ASSET_ASPECT.RATIO_ORIGINAL)
         }
         imageFrameSize = self.imageViewSizeWithFrame(frameSize)
+
+        
         self.changeCroppingAreaWithAnimation(true, frame: frameSize, imageFrameSize: imageFrameSize)
 //        println("frameSize:\(frameSize)")
 //        println("imageFrameSize:\(imageFrameSize)")
