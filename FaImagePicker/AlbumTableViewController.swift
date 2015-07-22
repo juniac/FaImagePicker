@@ -83,7 +83,7 @@ class AlbumTableViewController: UITableViewController {
         // Configure the cell...
         let group = self.assetsGroups[indexPath.row]
         let thumbnail = group.posterImage().takeUnretainedValue()
-        cell.imageView?.image = UIImage(CGImage: thumbnail)
+        cell.thumbnailImageView?.image = UIImage(CGImage: thumbnail)
         cell.nameLabel.text = group.valueForProperty(ALAssetsGroupPropertyName) as? String
         cell.assetCountLabel.text = String(group.numberOfAssets())
         return cell

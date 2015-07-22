@@ -144,8 +144,6 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
 
     func changeCroppingAreaWithAnimation(animation:Bool, frame:CGSize, imageFrameSize:CGSize) {
         
-        
-        println("changeCroppingArea")
         let availableSize = CGSizeMake(self.view.bounds.width, self.view.bounds.height - self.menuView.bounds.height - self.topLayoutGuide.length)
         let scrollViewFrame = CGRectMake((availableSize.width - frame.width) / 2, (availableSize.height - frame.height) / 2 + self.topLayoutGuide.length, frame.width, frame.height)
         

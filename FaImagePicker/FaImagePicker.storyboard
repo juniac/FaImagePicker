@@ -8,7 +8,7 @@
         <scene sceneID="eRm-bC-QrX">
             <objects>
                 <tableViewController storyboardIdentifier="AlbumTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7Qt-A6-dzf" customClass="AlbumTableViewController" customModule="FaImagePicker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zjs-pl-5Mr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zjs-pl-5Mr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -18,9 +18,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dOM-vM-15q" id="w0W-VK-Hnm">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="890-E8-paU">
-                                            <rect key="frame" x="8" y="5" width="59" height="59"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQz-ps-ze7">
                                             <rect key="frame" x="83" y="37" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -30,15 +27,18 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiI-ae-Du0">
                                             <rect key="frame" x="83" y="13" width="232" height="21"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="890-E8-paU">
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="assetCountLabel" destination="eQz-ps-ze7" id="O4O-Uf-Va5"/>
                                     <outlet property="nameLabel" destination="UiI-ae-Du0" id="xNp-Uf-zsI"/>
-                                    <outlet property="tumbnailImageView" destination="890-E8-paU" id="dzZ-qe-0my"/>
+                                    <outlet property="thumbnailImageView" destination="890-E8-paU" id="TsH-8s-BXm"/>
                                     <segue destination="1W3-0C-eHu" kind="show" identifier="showAssetCollection" id="cke-lM-Wtx"/>
                                 </connections>
                             </tableViewCell>

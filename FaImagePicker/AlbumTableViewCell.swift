@@ -10,10 +10,10 @@ import UIKit
 
 class AlbumTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var tumbnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var assetCountLabel: UILabel!
     
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
