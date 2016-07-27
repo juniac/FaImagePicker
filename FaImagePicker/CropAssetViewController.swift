@@ -131,7 +131,7 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
     func imageViewSizeWithFrame(size:CGSize) -> CGSize {
         let imageRatio = self.image.size.width / self.image.size.height
 
-        let frameRatio = size.width / size.height
+
         var imageFrameSize:CGSize = CGSizeZero
         
         if imageRatio < 1 {
@@ -204,10 +204,10 @@ class CropAssetViewController: UIViewController, UIScrollViewDelegate {
         };
         rectTransform = CGAffineTransformScale(rectTransform, self.image.scale, self.image.scale)
         
-        let imageRef:CGImageRef = CGImageCreateWithImageInRect(self.image.CGImage, CGRectApplyAffineTransform(rect, rectTransform))
+        let imageRef:CGImageRef = CGImageCreateWithImageInRect(self.image.CGImage, CGRectApplyAffineTransform(rect, rectTransform))!
         
-        let cropImage = UIImage(CGImage: imageRef, scale: self.image.scale, orientation: self.image.imageOrientation)!
-        println("cropImageSize:\(cropImage)")
+        let cropImage = UIImage(CGImage: imageRef, scale: self.image.scale, orientation: self.image.imageOrientation)
+        print("cropImageSize:\(cropImage)")
         return cropImage
 
     }

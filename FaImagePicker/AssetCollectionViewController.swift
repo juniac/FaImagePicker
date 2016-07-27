@@ -52,7 +52,7 @@ class AssetCollectionViewController: UICollectionViewController, UICollectionVie
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
+        if segue.identifier != nil {
             
             if segue.identifier == "showCropper" {
                 let cell = sender as! AssetCollectionViewCell

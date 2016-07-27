@@ -24,7 +24,7 @@ class ViewController: UIViewController, FaImagePickerControllerDelegate {
 
     @IBAction func imagePickerButtonAction(sender: UIButton) {
         let storyboard = UIStoryboard(name: "FaImagePicker", bundle: nil)
-        let faImagePicker = storyboard.instantiateViewControllerWithIdentifier("FaImagePicker") as! FaImagePickerController!
+        let faImagePicker = storyboard.instantiateViewControllerWithIdentifier("FaImagePicker") as! FaImagePickerController
         faImagePicker.imagePickerDelegate = self
         self.presentViewController(faImagePicker, animated: true, completion: {})
         
@@ -38,7 +38,7 @@ class ViewController: UIViewController, FaImagePickerControllerDelegate {
     
     func faImagePickerController(picker: FaImagePickerController, didFinishPickingImage image:UIImage?) {
         print("image:")
-        println(image)
+
         self.imageView.image = image
         self.dismissViewControllerAnimated(true, completion: {
             
