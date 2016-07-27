@@ -133,7 +133,7 @@ class AlbumTableViewController: UITableViewController {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         
-        if let identifier = segue.identifier {
+        if segue.identifier != nil {
             
             if segue.identifier == "showAssetCollection" {
                 let cell = sender as! AlbumTableViewCell
