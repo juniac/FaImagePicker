@@ -1,6 +1,6 @@
 # FaImagePicker
 
-FaImagePicker is a Image Picker for iOS written in Swift 1.2
+FaImagePicker is a Image Picker for iOS written in Swift 2.0
 
 https://youtu.be/z2Jeo21YgVk
 
@@ -40,7 +40,7 @@ To run the example project, clone repositaty.
 ```
 
 ## Requirement
-iOS 8, Swift 1.2
+iOS 8, Swift 2.0
 
 
 
